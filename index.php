@@ -41,10 +41,9 @@ function formValidation(){
         if($_POST['message'] == ''){
         $error_log['message'] = 'Please enter your Message';
         }
-        // if($er)
-        return $error_log;
 
 }
+return $error_log;
 
 }
 
