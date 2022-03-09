@@ -23,29 +23,25 @@ $error_log = array();
 $error_log = formValidation();
 //requirement was to the get the error message
 function formValidation(){
+    $error_log['name'] = $error_log['email'] =$error_log['mobile']= $error_log['message'] ='';
+
     if(isset($_POST) && !empty($_POST)  ){
         
-        if(trim($_POST['name']) != ''){
-//true
-           $error_log['name'] = '';
-        }
-        else{
+        if(trim($_POST['name']) == ''){
+
            $error_log['name'] = 'Please enter your Name';   
            //push the string value for the key name and the array name is error_log
         }
-        $error_log['email'] = '';
         if($_POST['email'] == ''){
          $error_log['email'] = 'Please enter your Email';
         }
-        $error_log['mobile'] = '';
-
         if($_POST['mobile'] == ''){
          $error_log['mobile'] = 'Please enter your Mobile number';
         }
-        $error_log['message'] = '';
         if($_POST['message'] == ''){
         $error_log['message'] = 'Please enter your Message';
         }
+        // if($er)
         return $error_log;
 
 }
@@ -85,7 +81,9 @@ function formValidation(){
                 <input type="text" class ="input-div-nn" id="name" name = "name"
                 value = "<?php echo $name; ?>">
                 <!-- give the name to the input the field it will work as 
-                a key in a array and value will be entered by the user-->
+                a key in a array and value will be entered by the user
+            isset($error_log['name']?($error_log['name'] : '');
+            -->
                     <p class = "error-msg"><?php echo $error_log['name'];?></p>
 
                 <label for="email">Email<span class = "error-msg" >*</label>
