@@ -14,7 +14,8 @@ if(!empty($_POST)){
     if($_POST['message'] !='' ){
         $message = $_POST['message'];
     }
-
+// echo "work";
+// print_r($_POST);
 }
 // function formAutofill(){
 // }
@@ -23,7 +24,7 @@ $error_log = array();
 $error_log = formValidation();
 //requirement was to the get the error message
 function formValidation(){
-    $error_log['name'] = $error_log['email'] =$error_log['mobile']= $error_log['message'] ='';
+    $error_log['name'] = $error_log['email'] =$error_log['mobile']= $error_log['message'] =$error_log['sucess'] = '';
 
     if(isset($_POST) && !empty($_POST)  ){
         
@@ -41,12 +42,16 @@ function formValidation(){
         if($_POST['message'] == ''){
         $error_log['message'] = 'Please enter your Message';
         }
-
+        if($_POST['name']!='' && $_POST['email']!='' && $_POST['mobile'] !='' && $_POST['message']!=''){
+           $error_log['sucess'] = '<p class="success">Thank you we will contact you soon</p>';
+        }
 }
+
 return $error_log;
 
 }
-
+// echo 1;
+// print_r($_POST);
 ?>
 <!-- FORM 
 1.NUMBER OF INPUT FIELD 
@@ -72,11 +77,10 @@ return $error_log;
     <div class="container">
         <div class="maindiv">
         <div class="col-6">
+
+            <?php echo $error_log['sucess'];?>
             <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
                 <label for="name">Name <span class = "error-msg" >*<span></label>
-                <?php
-             
-                ?>
                 <input type="text" class ="input-div-nn" id="name" name = "name"
                 value = "<?php echo $name; ?>">
                 <!-- give the name to the input the field it will work as 
