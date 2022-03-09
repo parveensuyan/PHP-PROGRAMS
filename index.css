@@ -34,3 +34,12 @@
     color: red;
     font-weight: bold;
   }
+  .success{
+    background: #3053b1;
+    padding: 19px;
+    TEXT-ALIGN: CENTER;
+    FONT-SIZE: 16PX;
+    FONT-WEIGHT: BOLD;
+    COLOR: WHITE;
+    FONT-FAMILY: CURSIVE;
+  }
