@@ -86,6 +86,10 @@
                 $decryption_key, $options, $decryption_iv);
 
                 if($_POST['pwd'] == $decryption){
+                    session_start();
+                    $_SESSION['user_id'] = $row['user_id'];
+                    // echo $_SESSION['user_id'];
+// exit;
                     header("Location: dashboard.php");
                     die();
                  }
