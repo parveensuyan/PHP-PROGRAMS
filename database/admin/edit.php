@@ -1,4 +1,7 @@
 <?php
+
+// SELECT THE PARTICULAR ROW IN THE <</TABLE> AND CHECK THAT ID EXIST OR FT_NOT
+// UPDATE
 // print_r();
 // exit;
 
@@ -56,8 +59,7 @@ $name = $email = $mobile = $message = '';
 
     function UpdateData()
     {
-        print_r($_POST);
-        exit;
+       
         $servername = "localhost";
         $username = "root";
         $password = ""; 
@@ -67,11 +69,13 @@ $name = $email = $mobile = $message = '';
             die("Failed! ". $conn->connect_error);
         }
         // echo $encryption;exit;
-        $sql = "update students set firstname='$_POST[name]', 
+        $sql = "update contactus set firstname='$_POST[name]', 
         mobile='$_POST[mobile]', email='$_POST[email]',message = '$_POST[message]' 
         where id='$_POST[update_confg_no]'";
+        // print_r($sql);
+        // exit;
         if($conn->query($sql)=== true){
-            echo "done";
+            // echo "done";
             }
             else{
             echo "error".$conn->connect_error;
@@ -126,8 +130,8 @@ $name = $email = $mobile = $message = '';
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Contact us</title>
-        
-    <link rel="stylesheet" href="index.css">
+
+    <link rel="stylesheet" href="http://<?php echo $_SERVER['HTTP_HOST']?>/database/admin/index.css">
     </head>
     <body>
         <div class="container">
@@ -140,18 +144,20 @@ $name = $email = $mobile = $message = '';
                     <input type="text" class ="input-div-nn" id="name" name = "name"
                     value = "<?php echo $name =='' ? $array_result['firstname']:$name; ?>">
                     <p class = "error-msg"><?php echo $error_log['name'];?></p>
-                    <input type="hidden" name="update_confg_no" value = "<?php echo $update_confg_no;?>">
+                    <input type="hidden" name="update_confg_no" value = "<?php echo  $array_result ['id'] ;?>">
                     <label for="email">Email<span class = "error-msg" >*</label>
                     <input type="email" class ="input-div-nn" id="email" name="email"
-                    value = "<?php echo $email; ?>"                >
+                    value = "<?php echo $email == '' ? $array_result['email'] : $email; ?>"                >
                     <p class = "error-msg"><?php echo $error_log['email'];?></p>
                     <label for="mobile">Mobile Number<span class = "error-msg"  >*</label>
-                    <input type="text" class ="input-div-nn" id="mobile" name = "mobile"  value = "<?php echo $mobile; ?>">
+                    <input type="text" class ="input-div-nn" id="mobile" name = "mobile"  
+                    value = "<?php echo $mobile == '' ? $array_result ['mobile'] : $mobile; ?>">
                     <p class = "error-msg"><?php echo $error_log['mobile'];?></p>
+                    
                     <label for="message">Message<span class = "error-msg" >*</label>
-                    <textarea name="message" id="message" cols="30" rows="10" class="input-div-nn"><?php echo $message; ?></textarea>
+                    <textarea name="message" id="message" cols="30" rows="10" class="input-div-nn"><?php echo $message== '' ? $array_result['message']:$message; ?></textarea>
                     <p class = "error-msg"><?php echo $error_log['message'];?></p>
-
+                        <a href="/database/admin/dashboard.php">Go Back</a>
                     <input type="submit" class="submit" value="Send Message">
                 </form>
             </div>
