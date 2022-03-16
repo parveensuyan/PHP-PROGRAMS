@@ -60,7 +60,7 @@ $array_result = InsertValue($user_id);
     <td><?php echo $value['email'];?></td>
     <td><?php echo $value['mobile'];?></td>
     <td><?php echo $value['message'];?></td>
-    <td><a href="edit.php">Edit</a> | <a href="edit.php">Delete</a></td>
+    <td><a href="edit.php/<?php echo $value['id'];?>">Edit</a> | <a href="delete.php/<?php echo $value['id'];?>">Delete</a></td>
   </tr>
  <?php } ?>
  
