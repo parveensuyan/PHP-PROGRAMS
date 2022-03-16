@@ -2,12 +2,19 @@
 
 // SELECT THE PARTICULAR ROW IN THE <</TABLE> AND CHECK THAT ID EXIST OR FT_NOT
 // UPDATE
-// print_r();
+$url_value = explode('/',$_SERVER['PHP_SELF']);
+// print_r($url_value);exit;
+// print_r(array_key_exists('4',$url_value) == false?'yes':'no');
 // exit;
 
-$url_value = explode('/',$_SERVER['PHP_SELF']);
-$array_result = CheckData($url_value);
 
+if(!array_key_exists('4',$url_value)||$url_value[4] == '' ){
+    echo "PAGE NOT FOUND11";
+    die;
+}
+else{
+    $array_result = CheckData($url_value);
+}
 $name = $email = $mobile = $message = '';
     if(!empty($_POST)){
         if($_POST['name'] !='' ){
@@ -131,7 +138,7 @@ $name = $email = $mobile = $message = '';
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Contact us</title>
 
-    <link rel="stylesheet" href="http://<?php echo $_SERVER['HTTP_HOST']?>/database/admin/index.css">
+        <link rel="stylesheet" href="http://<?php echo $_SERVER['HTTP_HOST']?>/database/admin/index.css">
     </head>
     <body>
         <div class="container">
@@ -144,7 +151,10 @@ $name = $email = $mobile = $message = '';
                     <input type="text" class ="input-div-nn" id="name" name = "name"
                     value = "<?php echo $name =='' ? $array_result['firstname']:$name; ?>">
                     <p class = "error-msg"><?php echo $error_log['name'];?></p>
-                    <input type="hidden" name="update_confg_no" value = "<?php echo  $array_result ['id'] ;?>">
+
+                    <input type="hidden" name="update_confg_no" 
+                    value = "<?php echo  $array_result ['id'] ;?>">
+                   
                     <label for="email">Email<span class = "error-msg" >*</label>
                     <input type="email" class ="input-div-nn" id="email" name="email"
                     value = "<?php echo $email == '' ? $array_result['email'] : $email; ?>"                >
