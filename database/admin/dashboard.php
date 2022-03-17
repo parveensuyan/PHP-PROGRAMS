@@ -45,8 +45,8 @@ $array_result = InsertValue($user_id);
 <body>
     <p>HI ADMIN</p>
     <input type="text" name="search" id="search-id-nn" value="">
-    <a type="button" value="Show Result" class="submit-search-btn">TEST
-  </a>
+    <input type="button" value="Show Result" class="submit-search-btn">
+  
 <table id="customers">
  <?php include 'include_table.php' ; ?>
  
